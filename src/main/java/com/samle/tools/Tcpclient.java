@@ -17,7 +17,7 @@ public class Tcpclient {
             //Scanner scanner = new Scanner(System.in);
             String host = "127.0.0.1";//scanner.next();
             System.out.println("Enter port");
-            int port = 9000;//scanner.nextInt();
+            int port = 9001;//scanner.nextInt();
             socket = new Socket(host, port);
             System.out.println("successful creating socket");
             user = "User"+Math.random();
@@ -46,7 +46,6 @@ public class Tcpclient {
                         System.out.println("Err stream write data");
                         e.printStackTrace();
                     }
-
                 }
                 else if(s.equals("close")){
                     out.close();
