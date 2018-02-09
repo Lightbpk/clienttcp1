@@ -1,23 +1,27 @@
 package com.samle.tools;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class Tcpclient {
+    public static final String PROPERTIES = "client.properties";
+    InputStream inputStream;
     private Socket socket;
     private String msg;
     private String user;
-
+    Properties prop = new Properties();
     public void init() {
         try {
-            System.out.println("Enter IP");
+            inputStream = getClass().getClassLoader().getResourceAsStream(PROPERTIES);
+            prop.load(inputStream);
+
             //Scanner scanner = new Scanner(System.in);
-            String host = "127.0.0.1";//scanner.next();
-            System.out.println("Enter port");
-            int port = 9001;//scanner.nextInt();
+            String host = prop.getProperty("host");
+            int port = Integer.parseInt(prop.getProperty("port"));
+            System.out.println("Connecting Host "+host);
+            System.out.println("Port "+port);
             socket = new Socket(host, port);
             System.out.println("successful creating socket");
             user = "User"+Math.random();
